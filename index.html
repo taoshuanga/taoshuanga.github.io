@@ -44,6 +44,7 @@
 	    <img alt="" src="image/coffee.png" style="position:absolute;z-index:3;top: 75%;left: 11%;width: 85px;height: 80px;">
 	    <img alt="" src="image/flower.png" style="position:absolute;z-index:2;top: 86%;left: 28%;">
     </div>
+<button onclick="document.querySelector('audio').play()">点击播放音乐</button>
 </div>
 <audio autoplay loop>
 	<source src="music/justmetyou.mp3" type="audio/mpeg">
@@ -54,6 +55,23 @@
 var page=-1;
 var length=4;
 var stop=false;
+var promise = document.querySelector('audio').play();
+
+if (promise !== undefined) {
+  promise.then(_ => {
+    // Autoplay started!
+	  console.log("Autoplay started!");
+  }).catch(error => {
+    // Autoplay was prevented.
+    // Show a "Play" button so that user can start playback.
+	alert("浏览器无法自动播放，请点击播放音乐");
+  });
+}
+
+作者：zjsmile
+链接：https://juejin.cn/post/6854573214560059405
+来源：稀土掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 $(function(){
 	slide();
 	$(".c-img").mouseover(function(){stop=true;}).mouseout(function(){stop=false;});
